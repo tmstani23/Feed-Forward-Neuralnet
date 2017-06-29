@@ -1,4 +1,4 @@
 # Perceptron
-A simple neural network
+A simple neural network library.
 
 Under development...
