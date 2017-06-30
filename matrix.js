@@ -19,19 +19,60 @@ function Matrix (rows, cols) {
         }
     }
 }
-//Take a single value "n" and add to every element of the matrix by that value
-Matrix.prototype.add = function(n) {
+
+Matrix.prototype.randomize = function() {
     for (var i = 0; i < this.rows; i++) {
         for (var j = 0; j < this.cols; j++) {
-        this.matrix[i][j] += n;
+            //fill the matrix with random values between 0 and 10
+            //math.floor rounds numbers down to the nearest whole
+            //math.random returns a number between 0 and 1
+            this.matrix[i][j] = Math.floor(Math.random() * 10);
         }
     }
 }
-//Take a single value "n" and multiply every element of the matrix by that value
+
+
+
+Matrix.prototype.add = function(n) {
+    //if n is a matrix:
+    if (n instanceof Matrix) {
+        for (var i = 0; i < this.rows; i++) {
+            for (var j = 0; j < this.cols; j++) {
+                //add all the values from the first matrix 
+                //by the values of the second matrix
+                this.matrix[i][j] += n.matrix[i][j];
+            }
+        }    
+    } 
+    //Take a single value "n" and add to every element of 
+    //the matrix by that value
+    else {
+        for (var i = 0; i < this.rows; i++) {
+            for (var j = 0; j < this.cols; j++) {
+            this.matrix[i][j] += n;
+            }
+        }
+    }
+}
+
 Matrix.prototype.multiply = function(n) {
-    for (var i = 0; i < this.rows; i++) {
-        for (var j = 0; j < this.cols; j++) {
-        this.matrix[i][j] *= n;
+    
+    if (n instanceof Matrix) {
+        for (var i = 0; i < this.rows; i++) {
+            //multiply all the values from the first matrix 
+            //by the values of the second matrix
+            for (var j = 0; j < this.cols; j++) {
+            this.matrix[i][j] *= n.matrix[i][j];
+            }
+        }
+    }
+    else {
+        //Take a single value "n" and multiply every 
+        //element of the matrix by that value    
+        for (var i = 0; i < this.rows; i++) {
+            for (var j = 0; j < this.cols; j++) {
+            this.matrix[i][j] *= n;
+            }
         }
     }
 }
