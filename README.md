@@ -1,4 +1,4 @@
 # Perceptron
-A simple neural network library.
+A simple library for doing math with matrices.
 
 Under development...
