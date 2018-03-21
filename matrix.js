@@ -1,6 +1,6 @@
 //let m = new Matrix(3,2)
 //note use console.table(m.matrix) to view the matrix as a table
-
+console.log("working");
 class Matrix {
     constructor(rows, cols) {
         this.rows = rows;
@@ -55,18 +55,37 @@ class Matrix {
         }
     }
 
+    transpose() {
+        let result = new Matrix(this.cols, this.rows);
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+            result.matrix[j][i] = this.matrix[i][j];
+            }
+        }
+        return result;
+    }
+
     multiply(n) {
         
         if (n instanceof Matrix) {
-            for (let i = 0; i < this.rows; i++) {
-                //multiply all the values from the first matrix 
-                //by the values of the second matrix
-                for (let j = 0; j < this.cols; j++) {
-                this.matrix[i][j] *= n.matrix[i][j];
+            if(this.cols !== n.rows) {
+                console.log("Columns of A must match Rows of B");
+                return undefined;
+            }
+            let a = this;
+            let b = n;
+            let result = new Matrix(a.rows, b.cols);
+            for (let i = 0; i < result.rows; i++) {
+                for (let j = 0; j < result.cols; j++) {
+                    let sum = 0;
+                    for(let k = 0; k < a.cols; k++) {
+                        sum += a.matrix[i][k] * b.matrix[k][j];
+                    }
+                    result.matrix[i][j] = sum;
                 }
             }
-        }
-        else {
+            return result;
+        } else {
             //Take a single value "n" and multiply every 
             //element of the matrix by that value    
             for (let i = 0; i < this.rows; i++) {
