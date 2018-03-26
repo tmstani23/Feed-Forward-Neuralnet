@@ -38,5 +38,28 @@ class NeuralNetwork {
         //Sending it back to the caller.
         return output.toArray();
     }
+
+    train(inputs, targets) {
+        let outputs = this.feedforward(inputs);
+        //Convert array to matrix object:
+        outputs = Matrix.fromArray(outputs);
+        targets = Matrix.fromArray(targets);
+        //Calculate the error:
+        //Error = Targets- Outputs
+        let output_errors = Matrix.subtract(targets, outputs);
+        
+        //Calculate the hidden layer error:
+        let who_t = Matrix.transpose(this.weights_ho);
+        let hidden_errors = Matrix.multiply(who_t, output_errors);
+
+        // targets.print();
+        // outputs.print();
+        // error.print();
+        // console.log(outputs.data[0]);
+        // console.log(targets.data[0]);
+        // console.log(error.data[0]);
+        
+    }
 }
 
+   

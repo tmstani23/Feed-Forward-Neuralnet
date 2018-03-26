@@ -30,6 +30,17 @@ class Matrix {
         return m;
     }
 
+    static subtract(a, b) {
+        //Return a new Matrix a-b:
+        let result = new Matrix(a.rows, b.cols) 
+        for (let i = 0; i < result.rows; i++) {
+            for (let j = 0; j < result.cols; j++) {
+                result.data[i][j] = a.data[i][j] - b.data[i][j]; 
+            }
+        }
+        return result;
+    }
+
     toArray() {
         let arr = [];
         for (let i = 0; i < this.rows; i++) {
@@ -76,9 +87,9 @@ class Matrix {
 
     static transpose(matrix) {
         let result = new Matrix(this.cols, this.rows);
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-            result.data[j][i] = this.data[i][j];
+        for (let i = 0; i < matrix.rows; i++) {
+            for (let j = 0; j < matrix.cols; j++) {
+            result.data[j][i] = matrix.data[i][j];
             }
         }
         return result;
@@ -129,6 +140,22 @@ class Matrix {
                 this.data[i][j] = func(val);
             }
         }
+    }
+
+    static map(matrix, func) {
+        let result = new Matrix(matrix.rows, matrix.cols);
+        // Apply a function to every element of matrix
+        for (let i = 0; i < matrix.rows; i++) {
+          for (let j = 0; j < matrix.cols; j++) {
+            let val = matrix.data[i][j];
+            result.data[i][j] = func(val);
+          }
+        }
+        return result;
+    }
+
+    print() {
+        console.table(this.data);
     }
 
 
