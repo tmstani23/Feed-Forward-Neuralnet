@@ -64,29 +64,23 @@ class Matrix {
 
 
     add(n) {
-        //if n is a matrix:
         if (n instanceof Matrix) {
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < this.cols; j++) {
-                    //add all the values from the first matrix 
-                    //by the values of the second matrix
-                    this.data[i][j] += n.data[i][j];
-                }
-            }    
-        } 
-        //Take a single value "n" and add to every element of 
-        //the matrix by that value
-        else {
-            for (let i = 0; i < this.rows; i++) {
-                for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] += n;
+                this.data[i][j] += n.data[i][j];
                 }
             }
+        } else {
+          for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+              this.data[i][j] += n;
+            }
+          }
         }
     }
 
     static transpose(matrix) {
-        let result = new Matrix(this.cols, this.rows);
+        let result = new Matrix(matrix.cols, matrix.rows);
         for (let i = 0; i < matrix.rows; i++) {
             for (let j = 0; j < matrix.cols; j++) {
             result.data[j][i] = matrix.data[i][j];
@@ -161,3 +155,6 @@ class Matrix {
 
 }
 
+if (typeof module !== 'undefined') {
+    module.exports = Matrix;
+}
