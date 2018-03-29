@@ -1,4 +1,6 @@
 # Perceptron
-A simple library for doing math with matrices.
+A simple feed-forward neural network with visualizations.
 
-Under development...
+
+
+
