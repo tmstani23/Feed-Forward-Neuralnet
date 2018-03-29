@@ -1,0 +1,4 @@
+//Thanks to Dan Schiffman from the Youtube Channel The Coding Train.
+//Most of the code in this project comes from his Neural Network tutorial series.
+//Coding Train Website: https://github.com/CodingTrain
+//Coding Train Youtube Channel: https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw

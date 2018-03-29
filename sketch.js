@@ -24,7 +24,9 @@ let training_data = [
 function setup() {
     
     createCanvas(400,400);
-    nn = new NeuralNetwork(2,2,1);
+    nn = new NeuralNetwork(2,4,1);
+
+    lr_slider = createSlider(0.01, 0.5, 0.1, 0.01);
 
 
 }
@@ -38,17 +40,25 @@ function draw() {
         nn.train(data.inputs, data.outputs);
     }
     
+    nn.setLearningRate(lr_slider.value());
+    
     let resolution = 10;
     let cols = width / resolution;
     let rows = height / resolution;
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            fill(random(255));
+            let x1 = i / cols;
+            let x2 = j / rows;
+            let inputs = [x1, x2];
+            
+            let y = nn.predict(inputs);
+
+            fill(y * 255);
             rect(i * resolution, j * resolution, resolution, resolution);
         }
     }
     
-    console.log(nn.feedforward([1,0]));
+    
 
 }
